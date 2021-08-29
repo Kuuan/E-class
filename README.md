@@ -1,3 +1,4 @@
 # E-class
 ## Student Kuuan
-https://c1.neweggimages.com/ProductImage/13-132-512-07.jpg
+
+![image](https://user-images.githubusercontent.com/89329117/131237203-27de6642-3866-48d0-a377-44ff71691ac1.png)
