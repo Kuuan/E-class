@@ -57,19 +57,19 @@ void loop()
   for (int i = 0; i<= 255; i++)
   {
   	analogWrite(R, i);
-		analogWrite(G, 0);
-		analogWrite(B, 0);
-    delay(10);
+	analogWrite(G, 0);
+	analogWrite(B, 0);
+        delay(10);
   }
 
   for (int i = 255; i>= 0; i--)
   {
   	analogWrite(R, i);
-		analogWrite(G, 0);
-		analogWrite(B, 0);
-    delay(10); 
+	analogWrite(G, 0);
+	analogWrite(B, 0);
+        delay(10); 
   }  
-  delay(1000);
+        delay(1000);
 }
 
 ````
