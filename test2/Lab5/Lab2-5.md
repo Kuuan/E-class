@@ -12,21 +12,22 @@ int buttonState = 0;
 void setup()
 {
   pinMode(2, INPUT);
-  pinMode(5, OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);
 }
 
 void loop()
 {
-  digitalWrite(5, HIGH);
   
   buttonState = digitalRead(2);
   if (buttonState == HIGH) {
   
     digitalWrite(9, HIGH);
+    digitalWrite(5, LOW);
+    
   } else {
     
     digitalWrite(9, LOW);
+    digitalWrite(5, HIGH);
   }
   delay(10); 
 }
