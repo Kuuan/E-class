@@ -5,13 +5,18 @@
 
 ## CODE
 ````c
-const int Red = 13;
-const int Green = 10;
-const int Blue = 11;
-
 int inches = 0;
-
+int GLED = 10;
+int RLED = 13;
+int BLED = 11;
 int cm = 0;
+
+void LED(int RH,int GH,int BH)
+{
+  digitalWrite(RLED, RH);
+  digitalWrite(GLED, GH);
+  digitalWrite(BLED, BH);
+}
 
 long readUltrasonicDistance(int triggerPin, int echoPin)
 {
@@ -27,32 +32,13 @@ long readUltrasonicDistance(int triggerPin, int echoPin)
   return pulseIn(echoPin, HIGH);
 }
 
-void changColor(int type){
-  analogWrite(Red,0);
-  analogWrite(Green,0);
-  analogWrite(Blue,0);
-  switch (type){
-    case 1://red
-    analogWrite(Red,255);
-    analogWrite(Green,0);
-    analogWrite(Blue,0);
-    break;
-    case 2://green
-    analogWrite(Red,0);
-    analogWrite(Green,255);
-    analogWrite(Blue,0);
-    break;
-    case 3://blue
-    analogWrite(Red,0);
-    analogWrite(Green,0);
-    analogWrite(Blue,255);
-    break;
-  }
-}
 
 void setup()
 {
   Serial.begin(9600);
+  digitalWrite(RLED, OUTPUT);
+  digitalWrite(GLED, OUTPUT);
+  digitalWrite(BLED, OUTPUT);
 
 }
 
@@ -61,24 +47,22 @@ void loop()
   // measure the ping time in cm
   cm = 0.01723 * readUltrasonicDistance(7, 7);
 
-  if(cm <70)
-  {
-    changColor(1);
-  }
-  else if(cm>= 270)
-  {
-    changColor(2);
-  }
-  else if(cm>= 70&& cm<270)
-  {
-    changColor(3);
-  }
-  
   // convert to inches by dividing by 2.54
   inches = (cm / 2.54);
   Serial.print(inches);
   Serial.print("in, ");
   Serial.print(cm);
+  
+  if(cm<70){
+    LED(1,0,0);
+  }
+  else if(cm>270){
+    LED(0,1,0);
+  }
+  else{
+    LED(0,0,1);
+  }
+  
   Serial.println("cm");
   delay(100); // Wait for 100 millisecond(s)
 }
