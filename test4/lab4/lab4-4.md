@@ -6,7 +6,56 @@
 
 # 電路圖
 
+![image](https://user-images.githubusercontent.com/89329117/138580637-e8210d9c-76e9-4c82-9067-4d749c5809d2.png)
+
 # CODE
 ````c
+// include the library code:
+#include <LiquidCrystal.h>
+
+#define echo 7
+#define trig 7
+  
+float  duration; 
+float  dd;
+int RLED = 9;
+int GLED = 8;
+
+// initialize the library with the numbers of the interface pins
+LiquidCrystal lcd(13, 10, 6, 5, 4, 3);
+
+void setup() {
+  digitalWrite(RLED, OUTPUT);
+  digitalWrite(GLED, OUTPUT);
+  lcd.begin(16, 2);
+}
+
+void loop() {
+  time_Measurement();
+  dd = duration * 0.01723;   
+  lcd.setCursor(0, 0);
+  lcd.print("Distance, cm: ");
+  lcd.setCursor(0, 1);
+  lcd.print(dd);
+  if (dd < 150) {
+    digitalWrite(RLED, HIGH);
+    digitalWrite(GLED, LOW);
+  } else {
+    digitalWrite(RLED, LOW);
+    digitalWrite(GLED, HIGH);
+  }
+}
+
+void time_Measurement()
+  { //function to measure the time taken by the pulse to return back
+    pinMode(trig, OUTPUT);
+    digitalWrite(trig, LOW);
+    delayMicroseconds(2);  
+    digitalWrite(trig, HIGH);
+    delayMicroseconds(10);
+    digitalWrite(trig, LOW);
+    pinMode(echo, INPUT);  
+    duration = pulseIn(echo, HIGH);
+  }
 
 ````
