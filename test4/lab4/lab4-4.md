@@ -6,7 +6,7 @@
 
 # 電路圖
 
-![image](https://user-images.githubusercontent.com/89329117/138580637-e8210d9c-76e9-4c82-9067-4d749c5809d2.png)
+
 
 # CODE
 ````c
