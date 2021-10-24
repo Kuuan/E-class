@@ -6,8 +6,6 @@
 
 ## Code
 ````c
-// Developed for Embedded Sytem, VNU, Fall 2021
-
 #include <Servo.h>
 
 int pos = 0;
